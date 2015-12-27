@@ -1,6 +1,11 @@
 use std::io::Read;
 use std::fs::File;
 use std::collections::HashSet;
+use std::fmt;
+
+extern crate crypto;
+use crypto::md5::Md5;
+use crypto::digest::Digest;
 
 fn main() {
     problem_one();
@@ -43,10 +48,6 @@ fn problem_two() {
     let mut ribbon_length = 0;
 
     for line in input.split("\n") {
-        if line.is_empty() {
-            continue;
-        }
-
         let dimens: Vec<u32> = line.split("x").map(|e| e.parse::<u32>().unwrap()).collect();
 
         let dimen_max: &u32 = dimens.iter().max().unwrap();
@@ -106,8 +107,29 @@ fn problem_three() {
     println!("Santa visited {} houses", house_set.len());
 }
 
+//This is definitely a lesson in multithreading, I should get on it
 fn problem_four() {
-    let input = open_problem_input("../../problems/problem_four.txt");
+    let mut input = open_problem_input("../../problems/problem_four.txt");
+
+    let mut gen = Md5::new();
+
+    let mut found = false;
+    for n in 0.. {
+        let key = fmt::format(format_args!("{}{}", input, n));
+        gen.input_str(&key);
+
+        let hash = gen.result_str();
+
+        if !found && hash.starts_with("00000") {
+            println!("Lowest integer to produce desired hash is {}", n);
+            found = true;
+        } else if hash.starts_with("000000") {
+            println!("Lowest integer to produce desired hash is {}", n);
+            break;
+        }
+
+        gen.reset();
+    }
 }
 
 fn open_problem_input(path: &str) -> String {
@@ -115,6 +137,8 @@ fn open_problem_input(path: &str) -> String {
 
     let mut buffer = String::new();
     file.read_to_string(&mut buffer);
+    let len = buffer.len();
 
+    buffer.truncate(len - 1);
     buffer
 }
