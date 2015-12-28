@@ -7,11 +7,15 @@ extern crate crypto;
 use crypto::md5::Md5;
 use crypto::digest::Digest;
 
+extern crate regex;
+use regex::Regex;
+
 fn main() {
     problem_one();
     problem_two();
     problem_three();
-    problem_four();
+    //problem_four();
+    problem_five();
 }
 
 fn problem_one() {
@@ -109,7 +113,7 @@ fn problem_three() {
 
 //This is definitely a lesson in multithreading, I should get on it
 fn problem_four() {
-    let mut input = open_problem_input("../../problems/problem_four.txt");
+    let input = open_problem_input("../../problems/problem_four.txt");
 
     let mut gen = Md5::new();
 
@@ -130,6 +134,33 @@ fn problem_four() {
 
         gen.reset();
     }
+}
+
+fn problem_five() {
+    let input = open_problem_input("../../problems/problem_five.txt");
+
+    let rule_one = Regex::new("[aeiou]").unwrap();
+    let rule_two = Regex::new(r"([a-z])\1").unwrap();
+    let rule_three = Regex::new("(ab|cd|pq|xy)").unwrap();
+
+    let nice_words = input.split("\n")
+        .fold(0,
+            |acc, word| {
+                let nice_tuple = (
+                    rule_one.is_match(word),
+                    rule_two.is_match(word),
+                    !rule_three.is_match(word)
+                );
+
+                if let (true, true, true) = nice_tuple {
+                    acc + 1
+                } else {
+                    acc
+                }
+            }
+        );
+
+    println!("Number of nice words: {}", nice_words);
 }
 
 fn open_problem_input(path: &str) -> String {
