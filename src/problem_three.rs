@@ -3,29 +3,28 @@ use std::collections::HashSet;
 mod advent_helper;
 use advent_helper::open_problem_input;
 
+#[derive(Eq, PartialEq, Hash, Clone, Copy)]
+struct Pair {
+    x: i32,
+    y: i32
+}
+
 fn main() {
     let input = open_problem_input("../../problems/problem_three.txt");
 
-    #[derive(Eq, PartialEq, Hash, Clone, Copy)]
-    struct Pair {
-        x: i32,
-        y: i32
-    }
-
-    let mut santa_curr_pos = Pair{ x: 0, y: 0 };
+    let mut santa_curr_pos = Pair { x: 0, y: 0 };
     let mut robo_curr_pos = Pair { x: 0, y: 0 };
 
     let mut house_set: HashSet<Pair> = HashSet::new();
     house_set.insert(santa_curr_pos);
 
-    for e in input.chars().enumerate() {
-        let (index, c) = e;
-
+    let mut is_santa = true;
+    for c in input.chars() {
         let mut pos_ptr: &mut Pair;
-        if index % 2 == 0 {
-            pos_ptr = &mut robo_curr_pos;
-        } else {
+        if is_santa {
             pos_ptr = &mut santa_curr_pos;
+        } else {
+            pos_ptr = &mut robo_curr_pos;
         }
 
         match c {
@@ -36,6 +35,7 @@ fn main() {
             _  => continue
         }
 
+        is_santa = !is_santa;
         house_set.insert(*pos_ptr);
     }
 
