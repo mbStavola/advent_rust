@@ -1,4 +1,9 @@
-fn problem_three() {
+use std::collections::HashSet;
+
+mod advent_helper;
+use advent_helper::open_problem_input;
+
+fn main() {
     let input = open_problem_input("../../problems/problem_three.txt");
 
     #[derive(Eq, PartialEq, Hash, Clone, Copy)]

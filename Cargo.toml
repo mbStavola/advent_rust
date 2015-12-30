@@ -5,23 +5,23 @@ authors = ["mbStavola <mstavola9@gmail.com>"]
 
 [[bin]]
 name = "problem_one"
-path = "problem_one.rs"
+path = "src/problem_one.rs"
 
 [[bin]]
 name = "problem_two"
-path = "problem_two.rs"
+path = "src/problem_two.rs"
 
 [[bin]]
 name = "problem_three"
-path = "problem_three.rs"
+path = "src/problem_three.rs"
 
 [[bin]]
 name = "problem_four"
-path = "problem_four.rs"
+path = "src/problem_four.rs"
 
 [[bin]]
 name = "problem_five"
-path = "problem_five.rs"
+path = "src/problem_five.rs"
 
 [dependencies]
 rust-crypto = "0.2.34"

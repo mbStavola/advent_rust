@@ -1,7 +1,7 @@
 use std::io::Read;
 use std::fs::File;
 
-fn open_problem_input(path: &str) -> String {
+pub fn open_problem_input(path: &str) -> String {
     let mut file = File::open(path).unwrap();
 
     let mut buffer = String::new();

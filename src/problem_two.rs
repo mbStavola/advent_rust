@@ -1,4 +1,7 @@
-fn problem_two() {
+mod advent_helper;
+use advent_helper::open_problem_input;
+
+fn main() {
     let input = open_problem_input("../../problems/problem_two.txt");
 
     let mut wrapping_paper_length = 0;

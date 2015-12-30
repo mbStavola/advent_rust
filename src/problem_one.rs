@@ -1,4 +1,7 @@
-fn problem_one() {
+mod advent_helper;
+use advent_helper::open_problem_input;
+
+fn main() {
     let input = open_problem_input("../../problems/problem_one.txt");
 
     let mut found = false;

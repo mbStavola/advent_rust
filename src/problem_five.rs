@@ -1,10 +1,10 @@
-use std::collections::HashSet;
-use std::fmt;
+mod advent_helper;
+use advent_helper::open_problem_input;
 
 extern crate regex;
 use regex::Regex;
 
-fn problem_five() {
+fn main() {
     let input = open_problem_input("../../problems/problem_five.txt");
 
     let rule_one = Regex::new("[aeiou]").unwrap();
