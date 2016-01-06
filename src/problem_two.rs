@@ -8,7 +8,7 @@ fn main() {
     let mut ribbon_length = 0;
 
     for line in input.split("\n") {
-        let dimens: Vec<u32> = line.split("x").map(|e| e.parse::<u32>().unwrap()).collect();
+        let dimens: Vec<u32> = line.split("x").map(|e| e.trim().parse::<u32>().unwrap()).collect();
 
         paper_length += length_of_paper(&dimens);
         ribbon_length += length_of_ribbon(&dimens);
