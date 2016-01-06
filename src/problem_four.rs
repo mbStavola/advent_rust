@@ -1,15 +1,12 @@
 use std::fmt;
 
-mod advent_helper;
-use advent_helper::open_problem_input;
-
 extern crate crypto;
 use crypto::md5::Md5;
 use crypto::digest::Digest;
 
 //This is definitely a lesson in multithreading, I should get on it
 fn main() {
-    let input = open_problem_input("../../problems/problem_four.txt");
+    let input = include_str!("../problems/problem_four.txt");
 
     let mut gen = Md5::new();
 

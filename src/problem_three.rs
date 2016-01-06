@@ -1,8 +1,5 @@
 use std::collections::HashSet;
 
-mod advent_helper;
-use advent_helper::open_problem_input;
-
 #[derive(Eq, PartialEq, Hash, Clone, Copy)]
 struct Pair {
     x: i32,
@@ -10,7 +7,7 @@ struct Pair {
 }
 
 fn main() {
-    let input = open_problem_input("../../problems/problem_three.txt");
+    let input = include_str!("../problems/problem_three.txt");
 
     let mut santa_curr_pos = Pair { x: 0, y: 0 };
     let mut robo_curr_pos = Pair { x: 0, y: 0 };

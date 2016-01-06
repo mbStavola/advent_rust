@@ -1,11 +1,8 @@
-mod advent_helper;
-use advent_helper::open_problem_input;
-
 extern crate regex;
 use regex::Regex;
 
 fn main() {
-    let input = open_problem_input("../../problems/problem_five.txt");
+    let input = include_str!("../problems/problem_five.txt");
 
     let rule_one = Regex::new("[aeiou]").unwrap();
     let rule_two = Regex::new(r"([a-z])\1").unwrap();

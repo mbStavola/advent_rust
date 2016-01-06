@@ -1,8 +1,5 @@
-mod advent_helper;
-use advent_helper::open_problem_input;
-
 fn main() {
-    let input = open_problem_input("../../problems/problem_two.txt");
+    let input = include_str!("../problems/problem_two.txt");
 
     let mut paper_length = 0;
     let mut ribbon_length = 0;
