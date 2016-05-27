@@ -7,3 +7,10 @@ rust:
 matrix:
     allow_failures:
         - rust: nightly
+
+branches:
+    only:
+        - auto
+
+notifications:
+    webhooks: http://homuslice.herokuapp.com/travis
